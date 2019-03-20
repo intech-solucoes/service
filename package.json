@@ -1,0 +1,18 @@
+{
+    "name": "@intechprev/service",
+    "version": "2.0.0",
+    "main": "dist/index.js",
+    "typings": "./types/index.d.ts",
+    "devDependencies": {
+        "@types/node": "10.12.18",
+        "typescript": "3.2.4"
+    },
+    "dependencies": {
+        "axios": "^0.18.0"
+    },
+    "scripts": {
+        "build": "yarn && yarn clean && tsc -d --declarationDir ./types",
+        "clean": "rmdir /s /q dist && rmdir /s /q types",
+        "npm:publish": "yarn build && npm publish --access public"
+    }
+}
