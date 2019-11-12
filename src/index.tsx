@@ -8,8 +8,6 @@ try {
     ReactNative = require("react-native");
 } catch {}
 
-const apiUrl = config.apiUrl;
-
 export enum TipoRequisicao {
     GET = "GET",
     POST = "POST"
@@ -44,11 +42,11 @@ export class BaseService {
 
     public async VerificarAdmin ()
     {
-        var token = await this.GetToken("token-admin");
+        var token = await this.GetToken(`@${config.appName}:token-admin`);
 
         return axios({
             method: "GET",
-            url: apiUrl + "/usuario/admin",
+            url: config.apiUrl + "/usuario/admin",
             data: {},
             headers: {
                 "Authorization": "Bearer " + token
@@ -58,11 +56,11 @@ export class BaseService {
 
     public async CriarRequisicaoPorUrl<T>(tipoRequisicao: TipoRequisicao, url: string, data?: any, tipoResposta: TipoResposta = TipoResposta.Default) : Promise<T>
     {
-        var token = await this.GetToken();
+        var token = await this.GetToken(`@${config.appName}:token`);
         
         let options: AxiosRequestConfig = {
             method: tipoRequisicao,
-            url: apiUrl + url,
+            url: config.apiUrl + url,
             data: data,
             headers: {
                 "Authorization": "Bearer " + token

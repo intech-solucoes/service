@@ -46,7 +46,6 @@ try {
     ReactNative = require("react-native");
 }
 catch (_a) { }
-var apiUrl = config.apiUrl;
 var TipoRequisicao;
 (function (TipoRequisicao) {
     TipoRequisicao["GET"] = "GET";
@@ -91,12 +90,12 @@ var BaseService = /** @class */ (function () {
             var token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.GetToken("token-admin")];
+                    case 0: return [4 /*yield*/, this.GetToken("@" + config.appName + ":token-admin")];
                     case 1:
                         token = _a.sent();
                         return [2 /*return*/, axios_1.default({
                                 method: "GET",
-                                url: apiUrl + "/usuario/admin",
+                                url: config.apiUrl + "/usuario/admin",
                                 data: {},
                                 headers: {
                                     "Authorization": "Bearer " + token
@@ -112,12 +111,12 @@ var BaseService = /** @class */ (function () {
             var token, options, result;
             return __generator(this, function (_a) {
                 switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.GetToken()];
+                    case 0: return [4 /*yield*/, this.GetToken("@" + config.appName + ":token")];
                     case 1:
                         token = _a.sent();
                         options = {
                             method: tipoRequisicao,
-                            url: apiUrl + url,
+                            url: config.apiUrl + url,
                             data: data,
                             headers: {
                                 "Authorization": "Bearer " + token
