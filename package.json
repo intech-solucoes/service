@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/service",
-    "version": "2.1.0",
+    "version": "2.2.1",
     "main": "dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {
@@ -9,11 +9,12 @@
     },
     "dependencies": {
         "axios": "^0.18.0",
-        "es6-promise": "^4.2.8"
+        "es6-promise": "^4.2.8",
+        "gluegun": "^4.1.2"
     },
     "scripts": {
-        "build": "yarn && yarn clean && tsc -d --declarationDir ./types",
-        "clean": "rmdir /s /q dist && rmdir /s /q types",
-        "npm:publish": "yarn build && npm publish --access public"
+        "build": "node build.js",
+        "prepublishOnly": "yarn build",
+        "npm:publish": "npm publish --access public"
     }
 }
