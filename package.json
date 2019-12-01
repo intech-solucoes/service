@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/service",
-    "version": "2.2.1",
+    "version": "2.2.6",
     "main": "dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {
@@ -14,7 +14,6 @@
     },
     "scripts": {
         "build": "node build.js",
-        "prepublishOnly": "yarn build",
-        "npm:publish": "npm publish --access public"
+        "prepublishOnly": "yarn build"
     }
 }

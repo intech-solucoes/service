@@ -39,6 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = __importDefault(require("axios"));
+var _1 = require(".");
 var config = require("../../../../src/config.json");
 var ReactNative;
 try {
@@ -46,17 +47,7 @@ try {
     ReactNative = require("react-native");
 }
 catch (_a) { }
-var TipoRequisicao;
-(function (TipoRequisicao) {
-    TipoRequisicao["GET"] = "GET";
-    TipoRequisicao["POST"] = "POST";
-})(TipoRequisicao = exports.TipoRequisicao || (exports.TipoRequisicao = {}));
-var TipoResposta;
-(function (TipoResposta) {
-    TipoResposta[TipoResposta["Default"] = 0] = "Default";
-    TipoResposta[TipoResposta["Blob"] = 1] = "Blob";
-    TipoResposta[TipoResposta["Zip"] = 2] = "Zip";
-})(TipoResposta = exports.TipoResposta || (exports.TipoResposta = {}));
+var apiUrl = config.apiUrl;
 var BaseService = /** @class */ (function () {
     function BaseService(controller) {
         this.controller = controller;
@@ -95,7 +86,7 @@ var BaseService = /** @class */ (function () {
                         token = _a.sent();
                         return [2 /*return*/, axios_1.default({
                                 method: "GET",
-                                url: config.apiUrl + "/usuario/admin",
+                                url: apiUrl + "/usuario/admin",
                                 data: {},
                                 headers: {
                                     "Authorization": "Bearer " + token
@@ -106,7 +97,7 @@ var BaseService = /** @class */ (function () {
         });
     };
     BaseService.prototype.CriarRequisicaoPorUrl = function (tipoRequisicao, url, data, tipoResposta) {
-        if (tipoResposta === void 0) { tipoResposta = TipoResposta.Default; }
+        if (tipoResposta === void 0) { tipoResposta = _1.TipoResposta.Default; }
         return __awaiter(this, void 0, void 0, function () {
             var token, options, result;
             return __generator(this, function (_a) {
@@ -116,15 +107,15 @@ var BaseService = /** @class */ (function () {
                         token = _a.sent();
                         options = {
                             method: tipoRequisicao,
-                            url: config.apiUrl + url,
+                            url: apiUrl + url,
                             data: data,
                             headers: {
                                 "Authorization": "Bearer " + token
                             }
                         };
-                        if (tipoResposta === TipoResposta.Blob)
+                        if (tipoResposta === _1.TipoResposta.Blob)
                             options.responseType = 'blob';
-                        else if (tipoResposta === TipoResposta.Zip)
+                        else if (tipoResposta === _1.TipoResposta.Zip)
                             options.responseType = 'arraybuffer';
                         return [4 /*yield*/, axios_1.default(options)];
                     case 2:
@@ -135,7 +126,7 @@ var BaseService = /** @class */ (function () {
         });
     };
     BaseService.prototype.CriarRequisicao = function (tipoRequisicao, versao, rota, data, tipoResposta) {
-        if (tipoResposta === void 0) { tipoResposta = TipoResposta.Default; }
+        if (tipoResposta === void 0) { tipoResposta = _1.TipoResposta.Default; }
         return __awaiter(this, void 0, void 0, function () {
             var url;
             return __generator(this, function (_a) {
