@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/service",
-    "version": "2.2.8",
+    "version": "2.2.11",
     "main": "dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {

@@ -7,15 +7,19 @@ try {
 } catch {}
 
 export abstract class Session {
-    static setToken = async(token: string) => {
+    static setToken = async(token: string, setAdmin: boolean = true) => {
         if (typeof (localStorage) !== 'undefined') {
             await localStorage.setItem(`@${config.appName}:token`, token);
-            await localStorage.setItem(`@${config.appName}:token-admin`, token);
+
+            if(setAdmin)
+                await localStorage.setItem(`@${config.appName}:token-admin`, token);
         }
         else {
             if (ReactNative) {
-                await ReactNative.AsyncStorage.getItem(`@${config.appName}:token`, token);
-                await ReactNative.AsyncStorage.getItem(`@${config.appName}:token-admin`, token);
+                await ReactNative.AsyncStorage.setItem(`@${config.appName}:token`, token);
+
+                if(setAdmin)
+                    await ReactNative.AsyncStorage.setItem(`@${config.appName}:token-admin`, token);
             }
         }
     }

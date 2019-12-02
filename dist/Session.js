@@ -46,31 +46,37 @@ catch (_a) { }
 var Session = /** @class */ (function () {
     function Session() {
     }
-    Session.setToken = function (token) { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    if (!(typeof (localStorage) !== 'undefined')) return [3 /*break*/, 3];
-                    return [4 /*yield*/, localStorage.setItem("@" + config.appName + ":token", token)];
-                case 1:
-                    _a.sent();
-                    return [4 /*yield*/, localStorage.setItem("@" + config.appName + ":token-admin", token)];
-                case 2:
-                    _a.sent();
-                    return [3 /*break*/, 6];
-                case 3:
-                    if (!ReactNative) return [3 /*break*/, 6];
-                    return [4 /*yield*/, ReactNative.AsyncStorage.getItem("@" + config.appName + ":token", token)];
-                case 4:
-                    _a.sent();
-                    return [4 /*yield*/, ReactNative.AsyncStorage.getItem("@" + config.appName + ":token-admin", token)];
-                case 5:
-                    _a.sent();
-                    _a.label = 6;
-                case 6: return [2 /*return*/];
-            }
+    Session.setToken = function (token, setAdmin) {
+        if (setAdmin === void 0) { setAdmin = true; }
+        return __awaiter(_this, void 0, void 0, function () {
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        if (!(typeof (localStorage) !== 'undefined')) return [3 /*break*/, 4];
+                        return [4 /*yield*/, localStorage.setItem("@" + config.appName + ":token", token)];
+                    case 1:
+                        _a.sent();
+                        if (!setAdmin) return [3 /*break*/, 3];
+                        return [4 /*yield*/, localStorage.setItem("@" + config.appName + ":token-admin", token)];
+                    case 2:
+                        _a.sent();
+                        _a.label = 3;
+                    case 3: return [3 /*break*/, 7];
+                    case 4:
+                        if (!ReactNative) return [3 /*break*/, 7];
+                        return [4 /*yield*/, ReactNative.AsyncStorage.setItem("@" + config.appName + ":token", token)];
+                    case 5:
+                        _a.sent();
+                        if (!setAdmin) return [3 /*break*/, 7];
+                        return [4 /*yield*/, ReactNative.AsyncStorage.setItem("@" + config.appName + ":token-admin", token)];
+                    case 6:
+                        _a.sent();
+                        _a.label = 7;
+                    case 7: return [2 /*return*/];
+                }
+            });
         });
-    }); };
+    };
     Session.clear = function () { return __awaiter(_this, void 0, void 0, function () {
         return __generator(this, function (_a) {
             switch (_a.label) {
