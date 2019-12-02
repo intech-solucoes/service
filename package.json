@@ -1,6 +1,6 @@
 {
     "name": "@intechprev/service",
-    "version": "2.2.6",
+    "version": "2.2.8",
     "main": "dist/index.js",
     "typings": "./types/index.d.ts",
     "devDependencies": {
@@ -13,7 +13,6 @@
         "gluegun": "^4.1.2"
     },
     "scripts": {
-        "build": "node build.js",
-        "prepublishOnly": "yarn build"
+        "build": "node build.js"
     }
 }
