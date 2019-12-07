@@ -45,14 +45,14 @@ export class BaseService {
             }
         });
     }
-
-    public async CriarRequisicaoPorUrl(tipoRequisicao: TipoRequisicao, url: string, data?: any, tipoResposta: TipoResposta = TipoResposta.Default) : Promise<any>
+    
+    public async CriarRequisicaoPorUrl<T>(tipoRequisicao: TipoRequisicao, url: string, data?: any, tipoResposta: TipoResposta = TipoResposta.Default) : Promise<T>
     {
         var token = await this.GetToken(`@${config.appName}:token`);
         
         let options: AxiosRequestConfig = {
             method: tipoRequisicao,
-            url: apiUrl + url,
+            url: config.apiUrl + url,
             data: data,
             headers: {
                 "Authorization": "Bearer " + token
@@ -66,10 +66,10 @@ export class BaseService {
 
         let { data: result } = await axios(options);
 
-        return result;
+        return result as T;
     }
     
-    public async CriarRequisicao(tipoRequisicao: TipoRequisicao, versao?: string | null, rota?: string | null, data?: any | null, tipoResposta: TipoResposta = TipoResposta.Default): Promise<any> {
+    public async CriarRequisicao<T>(tipoRequisicao: TipoRequisicao, versao?: string | null, rota?: string | null, data?: any | null, tipoResposta: TipoResposta = TipoResposta.Default): Promise<T> {
         var url = `/${this.controller}`;
 
         if(versao && versao !== "")
@@ -78,7 +78,7 @@ export class BaseService {
         if(rota && rota !== "")
             url = `${url}/${rota}`;
 
-        return this.CriarRequisicaoPorUrl(tipoRequisicao, url, data, tipoResposta);
+        return this.CriarRequisicaoPorUrl<T>(tipoRequisicao, url, data, tipoResposta);
     }
 
     public FormatarData(data: string) {

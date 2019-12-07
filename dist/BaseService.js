@@ -107,7 +107,7 @@ var BaseService = /** @class */ (function () {
                         token = _a.sent();
                         options = {
                             method: tipoRequisicao,
-                            url: apiUrl + url,
+                            url: config.apiUrl + url,
                             data: data,
                             headers: {
                                 "Authorization": "Bearer " + token
