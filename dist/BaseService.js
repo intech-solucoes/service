@@ -139,9 +139,6 @@ var BaseService = /** @class */ (function () {
             });
         });
     };
-    BaseService.prototype.FormatarData = function (data) {
-        return data.replace(new RegExp('/', 'g'), '.');
-    };
     return BaseService;
 }());
 exports.BaseService = BaseService;

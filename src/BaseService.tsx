@@ -80,8 +80,4 @@ export class BaseService {
 
         return this.CriarRequisicaoPorUrl<T>(tipoRequisicao, url, data, tipoResposta);
     }
-
-    public FormatarData(data: string) {
-        return data.replace(new RegExp('/', 'g'), '.');
-    }
 }

@@ -4,6 +4,8 @@ var BaseService_1 = require("./BaseService");
 exports.BaseService = BaseService_1.BaseService;
 var Session_1 = require("./Session");
 exports.Session = Session_1.Session;
+var FormatarData_1 = require("./FormatarData");
+exports.FormatarData = FormatarData_1.FormatarData;
 var TipoRequisicao;
 (function (TipoRequisicao) {
     TipoRequisicao["GET"] = "GET";

@@ -1,5 +1,6 @@
 export { BaseService } from "./BaseService";
 export { Session } from "./Session";
+export { FormatarData } from "./FormatarData";
 export declare enum TipoRequisicao {
     GET = "GET",
     POST = "POST"
